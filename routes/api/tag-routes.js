@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
-const { restore } = require('../../models/Product');
 
 // The `/api/tags` endpoint
 
@@ -9,14 +8,14 @@ router.get('/', async (req, res) => {
     const tagData = await Tag.findAll();
     res.status(200).json(tagData);
   } catch (err) {
-    res.status(500).json(err)
+    res.status(400).json(err)
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const tagData = await Tag.findByPk.apply(req.params.id, {
-      include: [{model: Tags}]
+      include: [{model: Product, through: ProductTag, as: 'tagged_product'}]
     })   
     
     if(!tagData) {
@@ -26,11 +25,11 @@ router.get('/:id', (req, res) => {
 
     res.status(200).json(tagData);
   } catch {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const tagData = await Tag.create(req.body);
     res.status(200).json(tagData);
@@ -39,25 +38,26 @@ router.post('/', (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    const tagData = await Tag.findByPk.apply(req.params.id, {
-      include: [{model: Tags}]
+    const tagData = await Tag.update(req.body, {
+      where: {
+        id: req.params.id
+      }
     })   
     
-    if(!tagData) {
+    if(!tagData[0]) {
       res.status(404).json({message: 'No tag found with this ID'});
       return;
     }
 
-    tagData.id = req.body;
     res.status(200).json(tagData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const tagData = await Tag.destroy({
       where: {
@@ -72,7 +72,7 @@ router.delete('/:id', (req, res) => {
 
     res.status(200).json(tagData);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
