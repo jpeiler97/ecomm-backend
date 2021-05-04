@@ -5,7 +5,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
-    const tagData = await Tag.findAll();
+    const tagData = await Tag.findAll({include: Product});
     res.status(200).json(tagData);
   } catch (err) {
     res.status(400).json(err)
@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const tagData = await Tag.findByPk.apply(req.params.id, {
-      include: [{model: Product, through: ProductTag, as: 'tagged_product'}]
+    const tagData = await Tag.findByPk(req.params.id, {
+      include: Product, ProductTag
     })   
     
     if(!tagData) {
