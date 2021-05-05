@@ -47,5 +47,5 @@ To test this application:
 <a name="questions"></a>
 ## Questions
 For further questions, you may reach me at:
-- GitHub:[jpeiler97](https://github.com/jpeiler97)
+- GitHub: [jpeiler97](https://github.com/jpeiler97)
 - Email: jp.eiler97@gmail.com
