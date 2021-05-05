@@ -7,8 +7,6 @@ In this project I added back end functionality to existing code for an Ecommerce
 
 ## Table of Contents
 
-[Installation](#installation)
-
 [Usage](#usage)
 
 [License](#license)
@@ -42,7 +40,7 @@ To test this application:
 
 1. Create and seed the database using db/schema.sql and typing "npm run seed".
 2. Ensure the server is running by typing "npm start".
-3. In Insomnia, test requests using the URL 'http://localhost:{INSERT PATH}/api/{INSERT ROUTE}/' (Default path should be 3001)
+3. In Insomnia, test requests using the URL 'http://<span></span>localhost:{INSERT PATH}/api/{INSERT ROUTE}/' (Default path should be 3001)
 
 <a name="questions"></a>
 ## Questions
