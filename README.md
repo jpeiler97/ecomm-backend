@@ -25,6 +25,7 @@ There is currently no way to use the data given by this application. However, yo
 
 
 Testing and Functionality:
+
 [![Functionality](https://img.youtube.com/vi/nMxapQBkKmw/0.jpg)](https://www.youtube.com/watch?v=nMxapQBkKmw)
 
 <a name="license"></a>
